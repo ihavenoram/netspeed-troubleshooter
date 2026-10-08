@@ -1,0 +1,7 @@
+# Copy to deny.local.txt (which you should never commit) and list the client,
+# site and personal names that must never appear in a showcase screenshot.
+# One per line, matched case-insensitively anywhere in the rendered text.
+# This machine's own host, user, domain, addresses and MACs are checked
+# automatically - you do not need to list those.
+ExampleClient
+example-site-pc01
