@@ -3,7 +3,3 @@ NetSpeed_*.json
 NetSpeed_*.txt
 NetSpeed_*.html
 reports/
-
-# Showcase output and the PRIVATE list of names it must never render.
-screenshots/
-tools/showcase/deny.local.txt

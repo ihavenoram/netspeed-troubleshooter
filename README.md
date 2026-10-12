@@ -6,7 +6,7 @@ From [ihavenoram.com](https://ihavenoram.com): field notes for ADHD techs runnin
 
 ![NetSpeed Troubleshooter's Link Facts tab: 1000 Mbps full duplex, addresses, gateway and DNS, NIC power saving flagged amber, driver version, no VPN and a direct proxy. Fictional machine and documentation-range addresses.](docs/screenshot.png)
 
-*The screenshot is the real GUI on a **fictional** machine: the host, addresses and figures are invented (see [How the screenshot is made](#how-the-screenshot-is-made)).*
+*The screenshot is the real GUI on a **fictional** machine: the host, addresses and figures are invented.*
 
 ```
 Launch-NetSpeed-Troubleshooter.cmd     <- run this (the GUI)
@@ -14,7 +14,6 @@ NetSpeed-Troubleshooter-Gui.ps1        <- the GUI
 NetSpeed-Troubleshooter.Helpers.ps1    <- all the measurement logic
 NetSpeed_HTML_Report.ps1               <- turns a saved report into one self-contained HTML page
 Watch-NsEgress.ps1                     <- records the public address on a schedule, to catch WAN failover
-tools\New-NetSpeedShowcase.ps1         <- how the screenshot was made (optional, dev only)
 ```
 
 **New here? Start with [QUICKSTART.md](QUICKSTART.md).** No installer and no deploy step: copy the folder to the machine and run the launcher.
@@ -84,10 +83,6 @@ The full list, and the measured facts each design decision rests on, are in [doc
 - **Ookla only runs when you press its button and confirm.** It then downloads the official CLI from `install.speedtest.net` (about 1 MB) into **this account's own profile**, never a shared folder, and checks it against a pinned SHA-256 before every run, because `speedtest.exe` isn't code-signed. Running it accepts Ookla's licence and GDPR notice on the user's behalf, and the Result URL it produces is public on speedtest.net.
 - **Nothing it schedules as SYSTEM can be changed by a standard user.** The egress watch refuses to install its scheduled task from a folder a standard user could change (`C:\temp`, Downloads and `C:\ProgramData` all qualify), so it's installed from `C:\Program Files`. The ETW trace and the Ookla CLI live in the running account's own profile.
 - **No telemetry.** Reports stay where you save them.
-
-## How the screenshot is made
-
-`tools\New-NetSpeedShowcase.ps1` runs the real GUI with the handful of functions that read the machine swapped for seeded fakes, and hands it an invented "busy site" as raw results. Every row, colour and verdict is drawn by the shipping code. Addresses come from the ranges reserved for documentation (RFC 5737, RFC 5398 ASNs, RFC 7042 MACs). Before an image is kept, every string on screen is checked against the real machine's names, addresses and MACs, and the PNG is stripped to pixels only.
 
 ## Requirements
 

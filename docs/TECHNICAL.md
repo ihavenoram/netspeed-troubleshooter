@@ -51,7 +51,6 @@ report under `knownLimits`.
 | `build\Atera_Run_NetSpeed_Collector.ps1` | Generated, ~2 KB. Runs the collector that the deploy script staged. |
 | `Watch-NsEgress.ps1` | **Egress watch.** Records the public address on a schedule to catch a WAN failover. |
 | `tests\Run-Tests.ps1` | **The gate.** 271 checks. Run before shipping anything. |
-| `tools\New-NetSpeedShowcase.ps1` | **Dev only.** Screenshots of the real GUI on a fictional machine, behind a privacy gate. Not built, staged or tested. |
 
 The helpers file is loaded as **text** and rebuilt inside each background runspace, so one
 definition serves the UI thread and every worker. The headless collector inlines that same file at
@@ -654,25 +653,6 @@ into that string.
 **UI responsiveness:** a scratch harness that wraps the timer's Tick handler with a stopwatch is
 how the 36 s freeze above was found and how the fix was proven - worst tick 6,792 ms before,
 99 ms after, on the same sweep. Re-measure the same way after touching anything the tick calls.
-
-### Showcase screenshots
-
-```bash
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "tools\New-NetSpeedShowcase.ps1"
-```
-
-Renders every main tab of the **real** GUI on a fictional, seeded "busy site" into `screenshots\`.
-Only the inputs are invented - `tools\showcase\Stubs.ps1` replaces the handful of functions that read
-this machine, and `tools\showcase\Inject.ps1` hands the GUI raw stage results - so every row, colour
-and verdict is drawn by the shipping code. Addresses are RFC1918 and RFC 5737 documentation ranges,
-ASNs RFC 5398, MACs RFC 7042. Nothing is measured and nothing touches the network.
-
-**Privacy gate:** before any PNG is kept, every string the window renders is checked against this
-machine's real host, user and domain names, every real address, gateway, DNS server and MAC, and any
-client or site names you list in `tools\showcase\deny.local.txt` (keep that file private - copy
-`deny.local.example.txt` to start it); any IPv4 that is not the fixture's own,
-documentation space or one of the tool's fixed probe targets also fails it. A failure keeps nothing.
-Add `-DenyToken 'ClientName'` for anything else that must never appear, and `-Seed` for a different site.
 
 ---
 
