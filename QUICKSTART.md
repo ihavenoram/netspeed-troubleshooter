@@ -12,7 +12,7 @@ Pick the way you're reaching the machine. Each path is a handful of steps, and n
 
 ## A. You're on the machine, or in a remote session
 
-1. Download `NetSpeed-Troubleshooter.zip` from [Releases](../../releases/latest) and extract it anywhere on a local disk.
+1. Download `netspeed.zip` from [Releases](../../releases/latest) and extract it anywhere on a local disk (it holds one folder, `netspeed\`).
 2. Double-click **`Launch-NetSpeed-Troubleshooter.cmd`**.
 3. Check the **Link** line at the top. Red there (a wired adapter below 100 Mbps, or half duplex) is your answer before you test anything: swap the patch lead and switch port first.
 4. If you know the customer's plan, type it into **Stated plan** (down / up, in Mbps). Leave it at 0 if you don't; the tool won't grade against a plan you didn't give it.
@@ -33,7 +33,7 @@ Optional, from the tabs:
 2. In the Backstage command prompt, run:
 
    ```bat
-   C:\temp\NetSpeed-Troubleshooter\Launch-NetSpeed-Troubleshooter.cmd
+   C:\temp\netspeed\Launch-NetSpeed-Troubleshooter.cmd
    ```
 
 3. Everything in A works the same from here. Under SYSTEM the clipboard may be unavailable, so use **Save Report...** instead of Copy Report.

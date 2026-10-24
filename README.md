@@ -9,24 +9,27 @@ From [ihavenoram.com](https://ihavenoram.com): field notes for ADHD techs runnin
 *The screenshot is the real GUI on a **fictional** machine: the host, addresses and figures are invented.*
 
 ```
-Launch-NetSpeed-Troubleshooter.cmd     <- run this (the GUI)
-NetSpeed-Troubleshooter-Gui.ps1        <- the GUI
-NetSpeed-Troubleshooter.Helpers.ps1    <- all the measurement logic
-NetSpeed_HTML_Report.ps1               <- turns a saved report into one self-contained HTML page
-Watch-NsEgress.ps1                     <- records the public address on a schedule, to catch WAN failover
+netspeed\
+  Launch-NetSpeed-Troubleshooter.cmd   <- run this (the GUI)
+  NetSpeed-Troubleshooter-Gui.ps1      <- the GUI
+  NetSpeed-Troubleshooter.Helpers.ps1  <- all the measurement logic
+  Launch-NetSpeed_HTML_Report.cmd      <- opens the HTML report renderer
+  NetSpeed_HTML_Report.ps1             <- turns a saved report into one self-contained HTML page
+  Launch-Watch-NsEgress.cmd            <- one egress sample (pass -Report true to read the history)
+  Watch-NsEgress.ps1                   <- records the public address on a schedule, to catch WAN failover
 ```
 
 **New here? Start with [QUICKSTART.md](QUICKSTART.md).** No installer and no deploy step: copy the folder to the machine and run the launcher.
 
 ## Download
 
-Grab the latest zip from **[Releases](../../releases/latest)**. The SHA-256 checksum is in the release notes and in the `.sha256` file beside the zip:
+Grab **`netspeed.zip`** from **[Releases](../../releases/latest)**. It holds one folder, `netspeed\`, with only what runs: the scripts and a `.cmd` launcher for each. Copy that folder to the PC or server (for example `C:\temp\netspeed`); this README and the docs stay here on GitHub. The SHA-256 checksum is in the release notes and in the `.sha256` file beside the zip:
 
 ```powershell
-Get-FileHash .\NetSpeed-Troubleshooter.zip -Algorithm SHA256
+Get-FileHash .\netspeed.zip -Algorithm SHA256
 ```
 
-Extract it, copy the `NetSpeed-Troubleshooter` folder wherever you need it (for ScreenConnect Backstage, drag it to `C:\temp`), and run the launcher. WinForms needs `-STA`, and the launcher supplies it:
+Extract it, copy the `netspeed` folder wherever you need it (for ScreenConnect Backstage, drag it to `C:\temp`), and run the launcher. WinForms needs `-STA`, and the launcher supplies it:
 
 ```bat
 Launch-NetSpeed-Troubleshooter.cmd
